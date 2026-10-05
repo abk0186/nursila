@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Нұрсила әже балабақшасы — жылулық пен қамқорлыққа толы балабақша. / Детский сад Нурсила аже." />
+  <title>Нұрсила әже балабақшасы</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238ccbea'/%3E%3Cstop offset='1' stop-color='%23a6e0c8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='30' fill='url(%23g)'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-size='28' font-weight='700' fill='%23ffffff'%3EН%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Негізгі мазмұнға өту</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="logo" href="#top" aria-label="Нұрсила әже балабақшасы">
+        <span class="logo-mark" aria-hidden="true">Н</span>
+        <span class="logo-text">
+          <strong data-i18n="brand">Нұрсила әже</strong>
+          <small data-i18n="brandSub">балабақшасы</small>
+        </span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="#about" data-i18n="navAbout">Біз туралы</a>
+        <a href="#nursila" data-i18n="navNursila">Нұрсила әже</a>
+        <a href="#interior" data-i18n="navInterior">Балабақша</a>
+        <a href="#events" data-i18n="navEvents">Іс-шаралар</a>
+        <a href="#instagram" data-i18n="navIg">Instagram</a>
+        <a href="#contacts" data-i18n="navContacts">Байланыс</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" class="lang-btn is-active" data-lang="kk" aria-pressed="true">KZ</button>
+          <button type="button" class="lang-btn" data-lang="ru" aria-pressed="false">RU</button>
+        </div>
+        <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav" data-i18n-aria="menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <p class="eyebrow" data-i18n="heroEyebrow">Жылулық пен қамқорлық</p>
+        <h1 data-i18n="heroTitle">Нұрсила әже балабақшасы</h1>
+        <p class="lead" data-i18n="heroLead">Балаларыңызға арналған жылы үй — ойын, тәрбие және қауіпсіз орта.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#contacts" data-i18n="ctaContact">Байланыс</a>
+          <a class="btn btn-ghost" href="#nursila" data-i18n="ctaNursila">Нұрсила әже туралы</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container narrow">
+        <h2 data-i18n="aboutTitle">Біз туралы</h2>
+        <p data-i18n="aboutP1">«Нұрсила әже» балабақшасы — балалардың күнін жылы, қауіпсіз және қызықты өткізуге арналған орын. Біз ойын арқылы үйретеміз, дәстүрді құрметтейміз және әр балаға жеке көңіл бөлеміз.</p>
+        <p data-i18n="aboutP2">Сайттағы фотосуреттер уақытша; кейін жаңа материалдармен жаңартылады. Байланыс деректері нақтыланады.</p>
+        <ul class="soft-cards" role="list">
+          <li>
+            <span class="icon" aria-hidden="true">🏠</span>
+            <strong data-i18n="aboutCard1Title">Жылы орта</strong>
+            <span data-i18n="aboutCard1Text">Топ бөлмелері, жатын бөлме және ыңғайлы дәліздер</span>
+          </li>
+          <li>
+            <span class="icon" aria-hidden="true">🎉</span>
+            <strong data-i18n="aboutCard2Title">Мерекелер</strong>
+            <span data-i18n="aboutCard2Text">Ұлттық киім, спорт және мерекелік іс-шаралар</span>
+          </li>
+          <li>
+            <span class="icon" aria-hidden="true">💛</span>
+            <strong data-i18n="aboutCard3Title">Қамқорлық</strong>
+            <span data-i18n="aboutCard3Text">Ата-аналармен ашық байланыс және құрмет</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="nursila">
+      <div class="container">
+        <div class="nursila-grid">
+          <figure class="nursila-photo">
+            <img
+              src="assets/nursila/begalieva-nursila-plaque.jpg"
+              alt="Бегалиева Нұрсила Оспаналиевна — естелік тақта"
+              width="640"
+              height="760"
+              loading="lazy"
+            />
+            <figcaption data-i18n="nursilaCaption">Уақытша фото — кейін ауыстырылады</figcaption>
+          </figure>
+          <div class="nursila-copy">
+            <p class="eyebrow" data-i18n="nursilaEyebrow">Есімі берілген</p>
+            <h2 data-i18n="nursilaTitle">Нұрсила әже</h2>
+            <p class="nursila-name">Бегалиева Нұрсила Оспаналиевна</p>
+            <p data-i18n="nursilaLead">Балабақша Қордай ауданының құрметті азаматы Нұрсила Оспаналиевна Бегалиеваның есімімен аталған. Оның еңбегі мен қызметі — біз үшін үлгі.</p>
+            <ol class="merits" data-i18n-list="merits">
+              <li>Алға ауылдық еңбекшілер депутаттары кеңесінің төрайымы</li>
+              <li>Қордай аудандық еңбекшілер депутаттары кеңесінің атқару комитетінің жауапты хатшысы</li>
+              <li>Қордай аудандық еңбекшілер депутаттары кеңесінің атқару комитеті төрағасының орынбасары</li>
+              <li>Қордай аудандық партия комитетінің Қазақстан компартия хатшысы</li>
+              <li>Қордай ауданының құрметті азаматы</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="interior">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="interiorTitle">Біздің балабақша</h2>
+          <p data-i18n="interiorLead">Топ бөлмелері, жатын бөлме және ішкі кеңістік — уақытша фотолар.</p>
+        </div>
+        <div class="gallery" id="gallery-interior" data-gallery="interior">
+          <button type="button" class="gallery-item" data-full="assets/interior/01-group-orange.jpg">
+            <img src="assets/interior/01-group-orange.jpg" alt="" loading="lazy" width="640" height="475" data-i18n-alt="int1" />
+          </button>
+          <button type="button" class="gallery-item" data-full="assets/interior/02-group-yellow.jpg">
+            <img src="assets/interior/02-group-yellow.jpg" alt="" loading="lazy" width="640" height="482" data-i18n-alt="int2" />
+          </button>
+          <button type="button" class="gallery-item" data-full="assets/interior/03-washroom.jpg">
+            <img src="assets/interior/03-washroom.jpg" alt="" loading="lazy" width="640" height="471" data-i18n-alt="int3" />
+          </button>
+          <button type="button" class="gallery-item" data-full="assets/interior/04-group-pink.jpg">
+            <img src="assets/interior/04-group-pink.jpg" alt="" loading="lazy" width="640" height="478" data-i18n-alt="int4" />
+          </button>
+          <button type="button" class="gallery-item" data-full="assets/interior/05-bedroom.jpg">
+            <img src="assets/interior/05-bedroom.jpg" alt="" loading="lazy" width="640" height="468" data-i18n-alt="int5" />
+          </button>
+          <button type="button" class="gallery-item tall" data-full="assets/interior/06-hallway.jpg">
+            <img src="assets/interior/06-hallway.jpg" alt="" loading="lazy" width="480" height="640" data-i18n-alt="int6" />
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="events">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="eventsTitle">Тәрбие және іс-шаралар</h2>
+          <p data-i18n="eventsLead">Сабақтар, мерекелер, спорт және күнделікті өмірден сәттер.</p>
+        </div>
+        <div class="gallery gallery-dense" id="gallery-events" data-gallery="events">
+          <!-- filled by JS from data for maintainability; noscript fallback below -->
+        </div>
+        <noscript>
+          <div class="gallery gallery-dense">
+            <img src="assets/events/01.jpg" alt="" /><img src="assets/events/03.jpg" alt="" />
+            <img src="assets/events/12.jpg" alt="" /><img src="assets/events/19.jpg" alt="" />
+          </div>
+        </noscript>
+      </div>
+    </section>
+
+    <section class="section" id="instagram">
+      <div class="container narrow">
+        <div class="ig-card">
+          <div class="ig-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="3" y="3" width="18" height="18" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <h2 data-i18n="igTitle">Instagram</h2>
+          <p data-i18n="igLead">Күнделікті өмір, Reels және жаңалықтар — біздің парақшада. Reels ендірулері кейін қосылады.</p>
+          <a class="btn btn-primary" href="https://www.instagram.com/nursila_aje_balabaqshasy" target="_blank" rel="noopener noreferrer">
+            @nursila_aje_balabaqshasy
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-contacts" id="contacts">
+      <div class="container narrow">
+        <h2 data-i18n="contactsTitle">Байланыс</h2>
+        <p class="note" data-i18n="contactsNote">Деректер нақтыланады — Asset кейін толықтырады.</p>
+        <dl class="contacts-list">
+          <div>
+            <dt data-i18n="labelPhone">Телефон</dt>
+            <dd><span class="placeholder" data-i18n="phPhone">+7 (___) ___-__-__ · нақтыланады</span></dd>
+          </div>
+          <div>
+            <dt data-i18n="labelAddress">Мекенжай</dt>
+            <dd><span class="placeholder" data-i18n="phAddress">Қала / аудан · нақтыланады</span></dd>
+          </div>
+          <div>
+            <dt data-i18n="labelEmail">Email</dt>
+            <dd><span class="placeholder" data-i18n="phEmail">info@nursila.kz · нақтыланады</span></dd>
+          </div>
+          <div>
+            <dt data-i18n="labelHours">Жұмыс уақыты</dt>
+            <dd><span class="placeholder" data-i18n="phHours">нақтыланады</span></dd>
+          </div>
+          <div>
+            <dt>Instagram</dt>
+            <dd><a href="https://www.instagram.com/nursila_aje_balabaqshasy" target="_blank" rel="noopener noreferrer">@nursila_aje_balabaqshasy</a></dd>
+          </div>
+        </dl>
+        <p class="domain-note" data-i18n="domainNote">Жоспарланған домен: nursila.kz</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> <span data-i18n="brandFull">Нұрсила әже балабақшасы</span></p>
+      <p class="muted" data-i18n="footerDraft">Алдын ала нұсқа · жарияланбаған</p>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
+    <button type="button" class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous">‹</button>
+    <img id="lightboxImg" src="" alt="" />
+    <button type="button" class="lightbox-nav next" id="lightboxNext" aria-label="Next">›</button>
+  </div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
