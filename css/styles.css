@@ -410,6 +410,12 @@ a:hover { color: var(--r-violet-ink); }
 }
 @media (min-width: 768px) {
   .ig-reels { grid-template-columns: repeat(2, 1fr); }
+  /* Three cards: pair on the first row, last card centered at the same width. */
+  .ig-reel:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc((100% - 1.25rem) / 2);
+    justify-self: center;
+  }
 }
 .ig-reel {
   position: relative;
