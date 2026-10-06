@@ -58,6 +58,14 @@
     if (msg && !msg.hidden && msg.dataset.kind) {
       msg.textContent = dict[msg.dataset.kind] || msg.textContent;
     }
+
+    const lbClose = document.getElementById("lightboxClose");
+    const lbPrev = document.getElementById("lightboxPrev");
+    const lbNext = document.getElementById("lightboxNext");
+    if (lbClose && dict.lbClose) lbClose.setAttribute("aria-label", dict.lbClose);
+    if (lbPrev && dict.lbPrev) lbPrev.setAttribute("aria-label", dict.lbPrev);
+    if (lbNext && dict.lbNext) lbNext.setAttribute("aria-label", dict.lbNext);
+    syncLightboxAlts();
   }
 
   document.querySelectorAll(".lang-btn").forEach((btn) => {
@@ -128,68 +136,301 @@
 
   /* ---------- lightbox ---------- */
   const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightboxImg");
   const lightboxClose = document.getElementById("lightboxClose");
   const lightboxPrev = document.getElementById("lightboxPrev");
   const lightboxNext = document.getElementById("lightboxNext");
-  let currentItems = [];
+  const lightboxCount = document.getElementById("lightboxCount");
+  const viewport = document.getElementById("lightboxViewport");
+  const track = document.getElementById("lightboxTrack");
+  const slideImgs = track ? Array.from(track.querySelectorAll("img")) : [];
+  let currentButtons = [];
   let currentIndex = 0;
+  let opener = null;
+  let animating = false;
+  let suppressClick = false;
+  let warmImages = [];
 
-  function openLightbox(items, index) {
-    currentItems = items;
-    currentIndex = index;
-    showCurrent();
-    lightbox.hidden = false;
-    document.body.style.overflow = "hidden";
-    lightboxClose.focus();
+  function reduceMotion() {
+    return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }
 
-  function closeLightbox() {
-    lightbox.hidden = true;
-    document.body.style.overflow = "";
-    lightboxImg.src = "";
+  function itemAt(index) {
+    const n = currentButtons.length;
+    if (!n) return null;
+    const el = currentButtons[(index % n + n) % n];
+    const img = el.querySelector("img");
+    return {
+      src: el.dataset.full || (img && (img.currentSrc || img.src)) || "",
+      alt: (img && img.alt) || ""
+    };
   }
 
-  function showCurrent() {
-    const src = currentItems[currentIndex];
-    lightboxImg.src = src;
-    lightboxImg.alt = "";
-  }
-
-  function step(delta) {
-    if (!currentItems.length) return;
-    currentIndex = (currentIndex + delta + currentItems.length) % currentItems.length;
-    showCurrent();
-  }
-
-  function bindGallery(root) {
-    if (!root) return;
-    root.addEventListener("click", (e) => {
-      const btn = e.target.closest(".gallery-item");
-      if (!btn || !root.contains(btn)) return;
-      const items = Array.from(root.querySelectorAll(".gallery-item")).map(
-        (el) => el.dataset.full || el.querySelector("img")?.src
-      );
-      const index = Array.from(root.querySelectorAll(".gallery-item")).indexOf(btn);
-      openLightbox(items, index);
+  function preloadAround() {
+    warmImages = [];
+    if (currentButtons.length < 2) return;
+    [-1, 1].forEach((offset) => {
+      const item = itemAt(currentIndex + offset);
+      if (!item || !item.src) return;
+      const img = new Image();
+      img.decoding = "async";
+      img.src = item.src;
+      warmImages.push(img);
     });
   }
 
-  bindGallery(document.getElementById("gallery-interior"));
-  bindGallery(document.getElementById("gallery-events"));
+  function setSlide(img, item) {
+    if (!img) return;
+    if (!item || !item.src) {
+      img.removeAttribute("src");
+      img.alt = "";
+      img.style.visibility = "hidden";
+      return;
+    }
+    img.style.visibility = "";
+    if (img.getAttribute("src") !== item.src) img.src = item.src;
+    img.alt = item.alt || "";
+  }
 
-  lightboxClose?.addEventListener("click", closeLightbox);
-  lightboxPrev?.addEventListener("click", () => step(-1));
-  lightboxNext?.addEventListener("click", () => step(1));
-  lightbox?.addEventListener("click", (e) => {
-    if (e.target === lightbox) closeLightbox();
+  function trackX(px) {
+    return "translate3d(" + px + "px,0,0)";
+  }
+
+  function placeTrack(px, animate) {
+    if (!track) return;
+    track.style.transition = animate && !reduceMotion()
+      ? "transform .38s cubic-bezier(.22,.61,.36,1)"
+      : "none";
+    track.style.transform = trackX(px);
+  }
+
+  function viewWidth() {
+    return (viewport && viewport.clientWidth) || 0;
+  }
+
+  function renderSlides() {
+    const n = currentButtons.length;
+    if (!n) return;
+    if (n === 1) {
+      setSlide(slideImgs[0], null);
+      setSlide(slideImgs[1], itemAt(currentIndex));
+      setSlide(slideImgs[2], null);
+    } else {
+      setSlide(slideImgs[0], itemAt(currentIndex - 1));
+      setSlide(slideImgs[1], itemAt(currentIndex));
+      setSlide(slideImgs[2], itemAt(currentIndex + 1));
+    }
+    placeTrack(-viewWidth(), false);
+    if (track) void track.offsetWidth;
+    if (lightboxCount) lightboxCount.textContent = (currentIndex + 1) + "/" + n;
+    if (lightboxPrev) lightboxPrev.hidden = n < 2;
+    if (lightboxNext) lightboxNext.hidden = n < 2;
+    preloadAround();
+  }
+
+  function syncLightboxAlts() {
+    if (!lightbox || lightbox.hidden || !currentButtons.length) return;
+    const n = currentButtons.length;
+    if (n === 1) setSlide(slideImgs[1], itemAt(currentIndex));
+    else {
+      setSlide(slideImgs[0], itemAt(currentIndex - 1));
+      setSlide(slideImgs[1], itemAt(currentIndex));
+      setSlide(slideImgs[2], itemAt(currentIndex + 1));
+    }
+  }
+
+  function openLightbox(buttons, index) {
+    if (!lightbox || !buttons.length) return;
+    currentButtons = buttons;
+    currentIndex = (index + buttons.length) % buttons.length;
+    opener = document.activeElement;
+    lightbox.hidden = false;
+    document.body.style.overflow = "hidden";
+    renderSlides();
+    if (lightboxClose) lightboxClose.focus();
+  }
+
+  function closeLightbox() {
+    if (!lightbox || lightbox.hidden) return;
+    lightbox.hidden = true;
+    document.body.style.overflow = "";
+    animating = false;
+    warmImages = [];
+    slideImgs.forEach((img) => {
+      img.removeAttribute("src");
+      img.alt = "";
+    });
+    if (opener && typeof opener.focus === "function") opener.focus();
+    opener = null;
+  }
+
+  function slideTo(delta) {
+    const n = currentButtons.length;
+    if (!n || !delta) return;
+    if (n < 2) return;
+    if (animating) return;
+    if (reduceMotion()) {
+      currentIndex = (currentIndex + delta + n) % n;
+      renderSlides();
+      return;
+    }
+    const width = viewWidth();
+    if (!width) {
+      currentIndex = (currentIndex + delta + n) % n;
+      renderSlides();
+      return;
+    }
+    animating = true;
+    let settled = false;
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      track.removeEventListener("transitionend", onEnd);
+      currentIndex = (currentIndex + delta + n) % n;
+      animating = false;
+      renderSlides();
+    };
+    const onEnd = (ev) => {
+      if (ev.propertyName && ev.propertyName !== "transform") return;
+      finish();
+    };
+    track.addEventListener("transitionend", onEnd);
+    placeTrack(-width + (delta > 0 ? -width : width), true);
+    setTimeout(finish, 460);
+  }
+
+  function bindGallerySwipe(gallery) {
+    let startX = 0;
+    let tracking = false;
+    gallery.addEventListener("pointerdown", (e) => {
+      startX = e.clientX;
+      tracking = true;
+      gallery._moved = false;
+    }, { passive: true });
+    gallery.addEventListener("pointermove", (e) => {
+      if (!tracking) return;
+      if (Math.abs(e.clientX - startX) > 12) gallery._moved = true;
+    }, { passive: true });
+    gallery.addEventListener("scroll", () => {
+      if (tracking) gallery._moved = true;
+    }, { passive: true });
+    const stop = () => {
+      tracking = false;
+      setTimeout(() => { gallery._moved = false; }, 0);
+    };
+    gallery.addEventListener("pointerup", stop);
+    gallery.addEventListener("pointercancel", stop);
+  }
+
+  document.querySelectorAll(".gallery").forEach(bindGallerySwipe);
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".gallery-item");
+    if (!btn) return;
+    const root = btn.closest(".gallery");
+    if (!root) return;
+    if (root._moved) {
+      root._moved = false;
+      return;
+    }
+    const buttons = Array.from(root.querySelectorAll(".gallery-item"));
+    const index = buttons.indexOf(btn);
+    if (index < 0) return;
+    openLightbox(buttons, index);
   });
-  document.addEventListener("keydown", (e) => {
-    if (lightbox.hidden) return;
-    if (e.key === "Escape") closeLightbox();
-    if (e.key === "ArrowLeft") step(-1);
-    if (e.key === "ArrowRight") step(1);
-  });
+
+  if (lightbox && viewport && track) {
+    let dragging = false;
+    let pointerId = null;
+    let startX = 0;
+    let startY = 0;
+    let dx = 0;
+    let axis = null;
+
+    lightboxClose?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closeLightbox();
+    });
+    lightboxPrev?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      slideTo(-1);
+    });
+    lightboxNext?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      slideTo(1);
+    });
+    lightbox.addEventListener("click", (e) => {
+      if (suppressClick) {
+        suppressClick = false;
+        return;
+      }
+      if (e.target.closest(".lightbox-close, .lightbox-nav, .lightbox-slide img")) return;
+      closeLightbox();
+    });
+
+    viewport.addEventListener("pointerdown", (e) => {
+      if (animating) return;
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      if (e.target.closest(".lightbox-close, .lightbox-nav")) return;
+      dragging = true;
+      pointerId = e.pointerId;
+      startX = e.clientX;
+      startY = e.clientY;
+      dx = 0;
+      axis = null;
+      try { viewport.setPointerCapture(e.pointerId); } catch (err) {}
+      placeTrack(-viewWidth(), false);
+    });
+
+    viewport.addEventListener("pointermove", (e) => {
+      if (!dragging || e.pointerId !== pointerId) return;
+      const mx = e.clientX - startX;
+      const my = e.clientY - startY;
+      if (!axis) {
+        if (Math.abs(mx) < 8 && Math.abs(my) < 8) return;
+        axis = Math.abs(mx) >= Math.abs(my) ? "x" : "y";
+      }
+      if (axis !== "x") return;
+      dx = currentButtons.length < 2 ? mx * 0.2 : mx;
+      placeTrack(-viewWidth() + dx, false);
+    });
+
+    function endDrag(e) {
+      if (!dragging || (e && e.pointerId !== pointerId)) return;
+      dragging = false;
+      const moved = Math.abs(dx);
+      const width = viewWidth() || 1;
+      const threshold = Math.min(72, width * 0.18);
+      if (moved > 10) {
+        suppressClick = true;
+        setTimeout(() => { suppressClick = false; }, 400);
+      }
+      if (axis === "x" && currentButtons.length > 1 && dx <= -threshold) slideTo(1);
+      else if (axis === "x" && currentButtons.length > 1 && dx >= threshold) slideTo(-1);
+      else placeTrack(-width, true);
+      dx = 0;
+      axis = null;
+    }
+
+    viewport.addEventListener("pointerup", endDrag);
+    viewport.addEventListener("pointercancel", endDrag);
+    viewport.addEventListener("touchmove", (e) => {
+      if (dragging && axis === "x") e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener("keydown", (e) => {
+      if (lightbox.hidden) return;
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closeLightbox();
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        slideTo(-1);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        slideTo(1);
+      }
+    });
+  }
 
   applyLang(getLang());
 })();
