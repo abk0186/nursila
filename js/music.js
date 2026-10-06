@@ -1,7 +1,9 @@
 /* Background music: "Балабақша әні" (Pai-pai) streamed via the official
    YouTube embed, starting at 0:05, looped. Browsers block autoplay with
    sound, so playback starts on the first tap/click/key press; the round
-   button toggles it and the choice is remembered in localStorage. */
+   button toggles it and the choice is remembered in localStorage.
+   The player iframe stays off-screen. A tap on an Instagram Reel pauses
+   playback for this visit only and does not write the mute flag. */
 (function () {
   var VIDEO_ID = "C24N84OGub8";
   var START = 5;
@@ -19,7 +21,9 @@
   var ready = false;
   var playing = false;
   var wantPlay = !off;
-  var fallbackTimer = null;
+  /* Set while a window blur might be an Instagram iframe focus, so the
+     first-gesture autostart cannot start music in that same turn. */
+  var blockAutoStart = false;
 
   function dict() {
     var all = window.NURSILA_I18N || {};
@@ -56,16 +60,6 @@
     if (ready) { try { player.pauseVideo(); } catch (e) {} }
   }
 
-  function openFallback() {
-    /* e.g. iOS: scripted playback blocked -> show the small player to tap */
-    root.classList.add("is-open");
-    document.getElementById("musicPlayer").setAttribute("aria-hidden", "false");
-  }
-  function closeFallback() {
-    root.classList.remove("is-open");
-    document.getElementById("musicPlayer").setAttribute("aria-hidden", "true");
-  }
-
   function onState(e) {
     var S = window.YT && YT.PlayerState;
     if (!S) return;
@@ -74,8 +68,6 @@
       playing = !(player.isMuted && player.isMuted());
       if (!wantPlay) { pause(); playing = false; }
       if (playing) {
-        clearTimeout(fallbackTimer);
-        closeFallback();
         off = false;
         save("on");
         unbindFirst();
@@ -128,11 +120,42 @@
   s.async = true;
   document.head.appendChild(s);
 
-  /* start on first user interaction (unless muted earlier) */
+  function isInstagramFrame(el) {
+    if (!el || String(el.tagName || "").toUpperCase() !== "IFRAME") return false;
+    var src = "";
+    try { src = String(el.getAttribute("src") || "") + " " + String(el.src || ""); } catch (err) {}
+    return src.indexOf("instagram.com") !== -1;
+  }
+
+  function reelEventTarget(e) {
+    if (!e) return false;
+    var t = e.type;
+    if (t !== "pointerdown" && t !== "touchstart" && t !== "touchend" && t !== "click") return false;
+    var el = e.target;
+    if (el && el.nodeType === 3) el = el.parentNode;
+    if (!el) return false;
+    if (el.closest && el.closest(".ig-reel")) return true;
+    return isInstagramFrame(el);
+  }
+
+  /* Pause for this visit only. Button shows the off/paused icon, but the
+     stored mute flag is left untouched so the next visit still plays. */
+  function pauseForReel() {
+    blockAutoStart = true;
+    off = true;
+    pause();
+    playing = false;
+    unbindFirst();
+    render();
+  }
+
+  /* start on first user interaction (unless muted earlier, or the gesture is a Reel) */
   var FIRST = ["pointerdown", "touchend", "click", "keydown", "scroll", "wheel"];
   function onFirst(e) {
-    if (off || playing) return;
+    if (blockAutoStart || off || playing) return;
     if (e && e.target && btn.contains(e.target)) return;
+    if (reelEventTarget(e)) return;
+    if (isInstagramFrame(document.activeElement)) return;
     play();
   }
   function bindFirst() {
@@ -148,23 +171,33 @@
   if (!off) bindFirst();
 
   btn.addEventListener("click", function () {
-    if (playing || (wantPlay && root.classList.contains("is-open"))) {
+    if (playing) {
       off = true;
       save("off");
       pause();
       playing = false;
-      closeFallback();
       unbindFirst();
     } else {
+      /* Playback blocked, or paused by a Reel: this tap is the resume. */
+      blockAutoStart = false;
       off = false;
       save("on");
       play();
-      clearTimeout(fallbackTimer);
-      fallbackTimer = setTimeout(function () {
-        if (!playing && wantPlay) openFallback();
-      }, 1500);
     }
     render();
+  });
+
+  document.querySelectorAll(".ig-reel").forEach(function (wrap) {
+    wrap.addEventListener("pointerdown", pauseForReel, true);
+    wrap.addEventListener("touchstart", pauseForReel, { capture: true, passive: true });
+  });
+
+  window.addEventListener("blur", function () {
+    blockAutoStart = true;
+    setTimeout(function () {
+      if (isInstagramFrame(document.activeElement)) pauseForReel();
+      else if (!off) blockAutoStart = false;
+    }, 0);
   });
 
   new MutationObserver(render).observe(document.documentElement, {
