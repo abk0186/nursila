@@ -345,8 +345,17 @@
     <button type="button" class="lightbox-nav next" id="lightboxNext" aria-label="Next">›</button>
   </div>
 
+  <div class="music" id="music">
+    <div class="music-player" id="musicPlayer" aria-hidden="true"><div id="musicYt"></div></div>
+    <button type="button" class="music-btn" id="musicBtn" aria-pressed="false" aria-label="Музыканы қосу" title="Музыканы қосу">
+      <svg class="music-ico ico-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l11-2v12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="2.5" fill="currentColor"/><circle cx="17.5" cy="16" r="2.5" fill="currentColor"/></svg>
+      <svg class="music-ico ico-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l11-2v12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="2.5" fill="currentColor"/><circle cx="17.5" cy="16" r="2.5" fill="currentColor"/><path d="M3 3l18 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/music.js"></script>
   <script async src="https://www.instagram.com/embed.js"></script>
 </body>
 </html>
