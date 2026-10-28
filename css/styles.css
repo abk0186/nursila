@@ -269,7 +269,7 @@ a:hover { color: var(--r-violet-ink); }
   content: ""; display: block; height: 5px;
   background: var(--rainbow);
 }
-.nursila-photo img { width: 100%; aspect-ratio: 5/6; object-fit: cover; object-position: top center; }
+.nursila-photo img { width: 100%; height: auto; aspect-ratio: auto; object-fit: contain; display: block; }
 .nursila-photo figcaption {
   padding: .7rem 1rem; font-size: .78rem; color: var(--muted); text-align: center;
   background: var(--cream-2);
