@@ -126,6 +126,13 @@
         applyMsg.textContent = dict.applyNeedFields;
         return;
       }
+      const age = applyForm.childAge.value.trim();
+      const comment = applyForm.comment.value.trim();
+      const lines = ["Сәлеметсіз бе! Балабақша бойынша өтініш:",
+        "Ата-ана: " + parent, "Телефон: " + phone, "Бала: " + child];
+      if (age) lines.push("Жасы/тобы: " + age);
+      if (comment) lines.push("Пікір: " + comment);
+      window.open("https://wa.me/77789268979?text=" + encodeURIComponent(lines.join("\n")), "_blank", "noopener");
       applyMsg.hidden = false;
       applyMsg.dataset.kind = "applyThanks";
       applyMsg.classList.remove("is-error");
