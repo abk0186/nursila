@@ -707,3 +707,9 @@ a:hover { color: var(--r-violet-ink); }
 .hours-line{margin-top:1rem}
 #process .merits,#values .merits,#about .merits{margin:.5rem 0 1rem 1.25rem}
 #values .merits li,#process .merits li,#about .merits li{margin:.35rem 0}
+.groups-gallery { grid-template-columns: 1fr; }
+@media (min-width: 600px) { .groups-gallery { grid-template-columns: repeat(2, 1fr); } }
+.group-card { margin: 0; }
+.group-card .gallery-item { width: 100%; display: block; }
+.group-card .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.group-card figcaption { text-align: center; font-weight: 600; margin-top: .5rem; }
