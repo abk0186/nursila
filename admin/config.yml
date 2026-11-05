@@ -1,0 +1,1725 @@
+locale: ru
+backend:
+  name: git-gateway
+  repo: abk0186/nursila
+  branch: main
+  auth_type: pkce
+  base_url: https://auth.decapbridge.com
+  auth_endpoint: /sites/__DECAPBRIDGE_SITE_ID__/pkce
+  auth_token_endpoint: /sites/__DECAPBRIDGE_SITE_ID__/token
+  gateway_url: https://gateway.decapbridge.com
+  squash_merges: true
+auth:
+  email_claim: email
+  first_name_claim: first_name
+  last_name_claim: last_name
+  avatar_url_claim: avatar_url
+site_url: https://nursila.edu.kz/
+display_url: https://nursila.edu.kz/
+media_folder: img/uploads
+public_folder: img/uploads
+collections:
+- name: site
+  label: Сайт «Нұрсила әже»
+  editor:
+    preview: false
+  files:
+  - name: site
+    label: 🏠 Весь сайт
+    file: data/site.json
+    fields:
+    - name: hero
+      label: Главное фото (вверху)
+      widget: image
+      required: false
+    - name: nursila
+      label: Портрет Нұрсила әже
+      widget: image
+      required: false
+    - name: texts
+      label: Тексты сайта (KZ/RU)
+      widget: object
+      collapsed: true
+      fields:
+      - name: skip
+        label: Перейти к основному содержанию  [skip]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: brand
+        label: Нурсила аже  [brand]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: brandSub
+        label: детский сад  [brandSub]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: brandFull
+        label: Детский сад «Нурсила аже»  [brandFull]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: navAbout
+        label: О саде  [navAbout]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: navNursila
+        label: Нурсила аже  [navNursila]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: navInterior
+        label: Садик  [navInterior]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: navEvents
+        label: Праздники  [navEvents]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: navApply
+        label: Заявка  [navApply]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: navIg
+        label: Instagram  [navIg]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: navContacts
+        label: Контакты  [navContacts]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: menu
+        label: Меню  [menu]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: lbClose
+        label: Закрыть  [lbClose]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: lbPrev
+        label: Предыдущее фото  [lbPrev]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: lbNext
+        label: Следующее фото  [lbNext]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: musicOn
+        label: Включить музыку  [musicOn]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: musicOff
+        label: Выключить музыку  [musicOff]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: heroEyebrow
+        label: Добро пожаловать!  [heroEyebrow]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: heroTitle
+        label: Детский сад «Нурсила аже»  [heroTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: heroLead
+        label: Добро пожаловать на официальный сайт детского сада «Нурсила   [heroLead]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: buildingAlt
+        label: Здание детского сада «Нурсила аже»  [buildingAlt]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: heroLocation
+        label: 📍 село Кордай, Жамбылская область · адрес уточняется  [heroLocation]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: heroNote
+        label: Позже через этот сайт можно будет оставить заявку на ребёнка  [heroNote]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: ctaApply
+        label: Оставить заявку  [ctaApply]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: ctaNursila
+        label: О Нурсиле аже  [ctaNursila]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: aboutTitle
+        label: О детском саде  [aboutTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: aboutP1
+        label: Наш детский сад открылся в декабре 2018 года. Основатели сад  [aboutP1]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: aboutP2
+        label: Цель сада — сохранить светлую память об аже, почтить её имя,  [aboutP2]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: aboutFeaturesIntro
+        label: Почему выбирают нас?  [aboutFeaturesIntro]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: featMontTitle
+        label: Монтессори  [featMontTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: featMontText
+        label: 'Метод Монтессори: самостоятельная игра, исследование и разви  [featMontText]'
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: featProgTitle
+        label: Госпрограмма  [featProgTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: featProgText
+        label: Обучение по государственной программе дошкольного образовани  [featProgText]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: featKzTitle
+        label: На казахском языке  [featKzTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: featKzText
+        label: Воспитание и обучение на казахском — уважение к языку и трад  [featKzText]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: featDayTitle
+        label: Распорядок дня  [featDayTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: featDayText
+        label: Игры, прогулки, питание и отдых — тёплый, безопасный день.  [featDayText]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: featFestTitle
+        label: Праздники  [featFestTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: featFestText
+        label: Национальные костюмы, спорт и утренники — радостные моменты.  [featFestText]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: featCareTitle
+        label: Заботливые воспитатели  [featCareTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: featCareText
+        label: Внимание к каждому ребёнку и открытый контакт с родителями.  [featCareText]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: featSpaceTitle
+        label: Тёплая среда  [featSpaceTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: featSpaceText
+        label: Групповые комнаты, спальня и уютные коридоры.  [featSpaceText]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: nursilaEyebrow
+        label: Личность, чьим именем назван сад  [nursilaEyebrow]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: nursilaTitle
+        label: Нурсила аже  [nursilaTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: nursilaLead
+        label: Детский сад назван в честь почётного гражданина Кордайского   [nursilaLead]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: nursilaCaption
+        label: Нурсила Оспаналыкызы  [nursilaCaption]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: nursilaAlt
+        label: Портрет Бегалиевой Нурсилы Оспаналыкызы  [nursilaAlt]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: groupsTitle
+        label: Наши группы  [groupsTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: grpDarin
+        label: Группа «Дарын»  [grpDarin]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: grpKarlygash
+        label: Группа «Карлыгаш»  [grpKarlygash]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: interiorTitle
+        label: Наш садик  [interiorTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: interiorLead
+        label: Группы, спальня и интерьер — временные фотографии.  [interiorLead]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: eventsTitle
+        label: Занятия и праздники  [eventsTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: eventsLead
+        label: Уроки, утренники, спорт и моменты из повседневной жизни.  [eventsLead]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: applyTitle
+        label: Заявка на ребёнка  [applyTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: applyLead
+        label: Заполните форму — заявка отправится в WhatsApp.  [applyLead]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: applySoon
+        label: 'Заявка отправляется в WhatsApp: +7 778 926 8979  [applySoon]'
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: labelParent
+        label: ФИО родителя  [labelParent]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: labelPhoneForm
+        label: Телефон  [labelPhoneForm]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: labelChild
+        label: Имя ребёнка  [labelChild]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: labelAge
+        label: Возраст / группа (необязательно)  [labelAge]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: labelComment
+        label: Комментарий  [labelComment]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: applySubmit
+        label: Отправить заявку  [applySubmit]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: applyThanks
+        label: Спасибо! Открылся WhatsApp — отправьте сообщение.  [applyThanks]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: applyNeedFields
+        label: Заполните ФИО родителя, телефон и имя ребёнка.  [applyNeedFields]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: igTitle
+        label: Instagram  [igTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: igLead
+        label: Будни и Reels — смотрите ниже. Полная лента в Instagram.  [igLead]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: igOpenReel
+        label: Открыть в Instagram  [igOpenReel]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: igCta
+        label: Открыть Instagram · @nursila_aje_balabaqshasy  [igCta]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: contactsTitle
+        label: Контакты  [contactsTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: contactsNote
+        label: По заявкам и вопросам звоните или пишите в WhatsApp.  [contactsNote]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: labelPhone
+        label: Телефон  [labelPhone]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: labelAddress
+        label: Адрес  [labelAddress]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: labelEmail
+        label: Email  [labelEmail]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: labelHours
+        label: Часы работы  [labelHours]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: phPhone
+        label: +7 778 926 8979  [phPhone]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: phAddress
+        label: село Кордай, Жамбылская область · адрес уточняется  [phAddress]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: phEmail
+        label: info@nursila.kz · уточняется  [phEmail]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: phHours
+        label: Пн–Пт, 8:00–18:00  [phHours]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: domainNote
+        label: 'Домен: nursila.edu.kz  [domainNote]'
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: footerDraft
+        label: Черновик · не опубликован  [footerDraft]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: int1
+        label: Групповая комната — оранжевая  [int1]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: int2
+        label: Групповая комната — жёлто-синяя  [int2]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: int3
+        label: Умывальная  [int3]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: int4
+        label: Групповая комната — розовая  [int4]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: int5
+        label: Спальня  [int5]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: int6
+        label: Коридор  [int6]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: eventAlt
+        label: Фото мероприятия  [eventAlt]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: heroSlogan
+        label: Воспитание ребёнка — общее дело и светлая дорога в будущее.   [heroSlogan]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: phBuilding
+        label: 'Фото: здание детского сада  [phBuilding]'
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: aboutP3
+        label: В саду работают 5 групп. В каждой группе воспитываются 20–25  [aboutP3]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: aboutP4
+        label: Детский сад «Нурсила аже» работает по государственному общео  [aboutP4]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: aboutP5
+        label: Мы даём детям качественные знания и воспитание по возрасту и  [aboutP5]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: progIntro
+        label: 'Для развития детей:  [progIntro]'
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: aboutP6
+        label: Организованы занятия художественным искусством на стекле и и  [aboutP6]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: aboutP7
+        label: Работает танцевальный кружок.  [aboutP7]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: hoursLine
+        label: 'Режим работы: с понедельника по пятницу, с 8:00 до 18:00.  [hoursLine]'
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: nursilaBio1
+        label: Бегалиева Нурсила Оспаналыкызы родилась в 1941 году в селе К  [nursilaBio1]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: nursilaBio2
+        label: Её достойный жизненный путь начался в образовании и продолжи  [nursilaBio2]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: nursilaBio3
+        label: Нурсила Оспаналыкызы, ставшая по-настоящему народной, ушла и  [nursilaBio3]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: processTitle
+        label: Учебно-воспитательный процесс  [processTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: processP1
+        label: Учебно-воспитательный процесс в саду строится с учётом возра  [processP1]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: processP2
+        label: Дети могут свободно двигаться, самостоятельно делать выбор и  [processP2]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: directionsIntro
+        label: 'Основные направления:  [directionsIntro]'
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: valuesTitle
+        label: Ценности  [valuesTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: valuesLead
+        label: В саду мы прививаем детям национальные и общечеловеческие це  [valuesLead]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: teamTitle
+        label: О коллективе  [teamTitle]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: teamP1
+        label: Коллектив нашего сада — квалифицированные специалисты, для к  [teamP1]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: teamP2
+        label: Руководитель, заведующая, методист, воспитатели, музыкальный  [teamP2]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: teamP3
+        label: Главное богатство коллектива — любовь к детям, ответственнос  [teamP3]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: phTeam
+        label: 'Фото: коллектив  [phTeam]'
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: teamP4
+        label: За семь лет работы сад дважды проводил семинары районного ур  [teamP4]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: text
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: text
+          required: false
+      - name: phSeminar
+        label: 'Фото: семинар, 2020–2024  [phSeminar]'
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: navProcess
+        label: Обучение  [navProcess]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: navValues
+        label: Ценности  [navValues]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: navTeam
+        label: Коллектив  [navTeam]
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+    - name: lists
+      label: Списки (KZ/RU)
+      widget: object
+      collapsed: true
+      fields:
+      - name: merits
+        label: 'Список: merits'
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: list
+          summary: '{{fields.t}}'
+          fields:
+          - name: t
+            label: Пункт
+            widget: text
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: list
+          summary: '{{fields.t}}'
+          fields:
+          - name: t
+            label: Пункт
+            widget: text
+      - name: programs
+        label: 'Список: programs'
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: list
+          summary: '{{fields.t}}'
+          fields:
+          - name: t
+            label: Пункт
+            widget: text
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: list
+          summary: '{{fields.t}}'
+          fields:
+          - name: t
+            label: Пункт
+            widget: text
+      - name: directions
+        label: 'Список: directions'
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: list
+          summary: '{{fields.t}}'
+          fields:
+          - name: t
+            label: Пункт
+            widget: text
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: list
+          summary: '{{fields.t}}'
+          fields:
+          - name: t
+            label: Пункт
+            widget: text
+      - name: values
+        label: 'Список: values'
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: list
+          summary: '{{fields.t}}'
+          fields:
+          - name: t
+            label: Пункт
+            widget: text
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: list
+          summary: '{{fields.t}}'
+          fields:
+          - name: t
+            label: Пункт
+            widget: text
+    - name: groups
+      label: Фото групп
+      widget: list
+      fields:
+      - name: photo
+        label: Фото
+        widget: image
+        required: false
+    - name: interior
+      label: Фото «Балабақша» (интерьер)
+      label_singular: фото
+      widget: list
+      fields:
+      - name: photo
+        label: Фото
+        widget: image
+        required: false
+    - name: events
+      label: Фото мероприятий
+      label_singular: фото
+      widget: list
+      fields:
+      - name: photo
+        label: Фото
+        widget: image
+        required: false
+    - name: teamPhoto
+      label: Фото коллектива
+      widget: image
+      required: false
+    - name: seminarPhoto
+      label: Фото семинара
+      widget: image
+      required: false
+    - name: docsTitle
+      label: Заголовок «Документы»
+      widget: object
+      collapsed: true
+      fields:
+      - name: kk
+        label: 🇰🇿 Қазақша
+        widget: string
+        required: false
+      - name: ru
+        label: 🇷🇺 Русский
+        widget: string
+        required: false
+    - name: docs
+      label: Документы
+      label_singular: документ
+      widget: list
+      summary: '{{fields.name.ru}}'
+      fields:
+      - name: name
+        label: Название
+        widget: object
+        collapsed: true
+        fields:
+        - name: kk
+          label: 🇰🇿 Қазақша
+          widget: string
+          required: false
+        - name: ru
+          label: 🇷🇺 Русский
+          widget: string
+          required: false
+      - name: file
+        label: Файл (PDF)
+        widget: file
+        required: false
+        media_folder: /docs
+        public_folder: /docs
